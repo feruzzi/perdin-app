@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('status');
+            $table->string('description');
             $table->string('process_by');
             $table->foreign('username')->references('username')->on('users');
             $table->foreign('origin')->references('id_city')->on('cities');

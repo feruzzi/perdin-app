@@ -7,8 +7,8 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item  {{ $set_active == 'users' ? 'active' : '' }}">
+        <a href="{{ url('dashboard/users') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-stack"></i>
             <span>Pengguna</span>
         </a>
