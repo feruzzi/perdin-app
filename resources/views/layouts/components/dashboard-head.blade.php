@@ -9,14 +9,15 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main/custom.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/Syntax_Error.svg') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/Syntax_Error.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/extensions/@icon/dripicons/dripicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/dripicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
 
-
-    @stack('header-js')
+    <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
+    @stack('select2-js')
 </head>
 
 <body>

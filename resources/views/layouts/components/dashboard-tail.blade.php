@@ -25,7 +25,6 @@
     </footer>
 </div>
 </div>
-<script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
 {{-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> --}}
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
@@ -38,6 +37,7 @@
     });
 </script>
 {{-- @stack('footer-js') --}}
+@stack('ex-select2-js')
 </body>
 
 </html>

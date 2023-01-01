@@ -13,8 +13,8 @@
             <span>Pengguna</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item {{ $set_active == 'cities' ? 'active' : '' }}">
+        <a href="{{ url('dashboard/cities') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-article"></i>
             <span>Master Kota</span>
         </a>
