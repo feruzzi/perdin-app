@@ -3,6 +3,7 @@
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CitiesController;
+use App\Http\Controllers\TripsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,6 @@ Route::post('/cities/store-city', [CitiesController::class, 'store']);
 Route::get('/cities/edit/{id}', [CitiesController::class, 'edit']);
 Route::put('/cities/update/{id}', [CitiesController::class, 'update']);
 Route::delete('/cities/delete/{id}', [CitiesController::class, 'destroy']);
+Route::get('/cities/find-coor/', [CitiesController::class, 'find_coor']);
+
+Route::get('/dashboard/trips', [TripsController::class, 'index']);

@@ -37,7 +37,7 @@
     });
 </script>
 {{-- @stack('footer-js') --}}
-@stack('ex-select2-js')
+@stack('footer')
 </body>
 
 </html>

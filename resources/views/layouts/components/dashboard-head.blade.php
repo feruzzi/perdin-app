@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
 
     <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
-    @stack('select2-js')
+    @stack('head')
 </head>
 
 <body>

@@ -134,4 +134,11 @@ class CitiesController extends Controller
         City::destroy($id);
         return redirect('dashboard/cities');
     }
+    public function find_coor(Request $request)
+    {
+        $city = $request->city;
+        $coor = file_get_contents("http://www.gps-coordinates.net/api/" . $city);
+        $coor = json_decode($coor);
+        return response()->json(['coor' => $coor, 'msg' => "Gagal Menemukan Koordinat Kota"]);
+    }
 }

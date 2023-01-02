@@ -1,4 +1,14 @@
 @extends('layouts.dashboard.dashboard-admin')
+@push('head')
+    <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}">
+@endpush
+@push('footer')
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+    <script>
+        let user = $("#tbuser").DataTable();
+    </script>
+@endpush
 @section('content')
     <div class="page-title">
         <div class="row">
@@ -22,7 +32,7 @@
         </div>
         <div class="card my-3 p-3">
             <div class="table-responsive mt-3">
-                <table class="table">
+                <table class="table" id="tbuser">
                     <thead>
                         <th>No</th>
                         <th>Nama</th>

@@ -19,8 +19,8 @@
             <span>Master Kota</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item {{ $set_active == 'trips' ? 'active' : '' }}">
+        <a href="{{ url('dashboard/trips') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-article"></i>
             <span>Perjalanan Dinas</span>
         </a>

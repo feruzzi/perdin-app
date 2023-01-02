@@ -27,22 +27,24 @@
                         @csrf
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-12 mb-3">
                                     <label for="name">Nama</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Nama Pengguna">
                                 </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Username">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12 col-md-6">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            placeholder="Username">
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Password">
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password">
-                                </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-3 mb-3">
                                     <label for="role">Pilih Role</label>
                                     <select class="form-select" aria-label="Pilih Role" id="role" name="role">
                                         <option selected>-Pilih Role Pengguna-</option>
