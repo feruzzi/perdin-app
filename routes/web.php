@@ -41,3 +41,7 @@ Route::delete('/cities/delete/{id}', [CitiesController::class, 'destroy']);
 Route::get('/cities/find-coor/', [CitiesController::class, 'find_coor']);
 
 Route::get('/dashboard/trips', [TripsController::class, 'index']);
+Route::get('/perdinku', [TripsController::class, 'perdinku']);
+Route::get('/perdin/add-perdin', [TripsController::class, 'create']);
+Route::post('/perdin/store-perdin', [TripsController::class, 'store']);
+Route::delete('/perdin/delete/{id}', [TripsController::class, 'destroy']);

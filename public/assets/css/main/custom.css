@@ -1683,3 +1683,14 @@ a.ui-button:active,
     -ms-border-radius: 0.25rem;
     -o-border-radius: 0.25rem;
 }
+.date-cursor {
+    cursor: pointer;
+}
+.td-description {
+    /* display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden; */
+    max-width: 200px;
+}

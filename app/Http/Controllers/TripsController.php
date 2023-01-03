@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trip;
+use App\Models\City;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TripsController extends Controller
 {
@@ -14,8 +16,10 @@ class TripsController extends Controller
      */
     public function index()
     {
+        $trips = Trip::all();
         return view('trips.index', [
             'set_active' => 'trips',
+            'trips' => $trips
         ]);
     }
 
@@ -26,7 +30,13 @@ class TripsController extends Controller
      */
     public function create()
     {
-        //
+        $user = 'tes1';
+        $cities = City::orderBy('name')->get();
+        return view('perdinku.add-perdin', [
+            'set_active' => 'perdinku',
+            'user' => $user,
+            'cities' => $cities
+        ]);
     }
 
     /**
@@ -37,7 +47,17 @@ class TripsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = 'tes1';
+        Trip::create([
+            'username' => $user,
+            'origin' => $request->origin,
+            'destination' => $request->destination,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'description' => $request->description,
+            'status' => 0,
+        ]);
+        return redirect('perdinku');
     }
 
     /**
@@ -80,8 +100,26 @@ class TripsController extends Controller
      * @param  \App\Models\Trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trip $trip)
+    public function destroy($id)
     {
-        //
+        Trip::destroy($id);
+        return redirect('perdinku');
+    }
+    public function perdinku()
+    {
+        // $date = Carbon::parse('2022-12-27');
+        // $now = Carbon::now();
+
+        // $diff = $date->diffInDays($now);
+        // dd($diff);
+        // dd(Carbon::now()->format('d M Y'));
+
+        $user = 'tes1';
+        $trips = Trip::with(['origin_city', 'destination_city'])->where('username', '=', $user)->get();
+        return view('perdinku.perdinku', [
+            'set_active' => 'perdinku',
+            'user' => $user,
+            'trips' => $trips,
+        ]);
     }
 }
