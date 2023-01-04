@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('assets/extensions/@icon/dripicons/dripicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/dripicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/extensions/sweetalert2/sweetalert2.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
 
     <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
     @stack('head')

@@ -29,27 +29,44 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <label for="name">Nama</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Nama Pengguna">
+                                    <input type="text" class="form-control  @error('name') is-invalid  @enderror"
+                                        id="name" name="name" placeholder="Nama Pengguna"
+                                        value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-6">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username"
-                                            placeholder="Username">
+                                        <input type="text" class="form-control @error('username') is-invalid  @enderror"
+                                            id="username" name="username" placeholder="Username"
+                                            value="{{ old('username') }}">
+                                        @error('username')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Password">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" name="password" placeholder="Password">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-3 mb-3">
                                     <label for="role">Pilih Role</label>
-                                    <select class="form-select" aria-label="Pilih Role" id="role" name="role">
-                                        <option selected>-Pilih Role Pengguna-</option>
-                                        <option value="0">Divisi SDM</option>
+                                    <select class="form-select @error('role') is-invalid @enderror" aria-label="Pilih Role"
+                                        id="role" name="role">
                                         <option value="1">Pegawai</option>
+                                        <option value="0">Divisi SDM</option>
                                     </select>
                                 </div>
                             </div>

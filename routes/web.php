@@ -20,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('dashboard.index');
 // });
+Route::get('/', [PagesController::class, 'index']);
+Route::post('/login/auth', [PagesController::class, 'auth']);
+Route::get('/logout/auth', [PagesController::class, 'logout']);
 
+Route::get('/dashboard', [PagesController::class, 'dashboard']);
 Route::get('/dashboard/users', [UsersController::class, 'index']);
 Route::get('/users/add-user', [UsersController::class, 'create']);
 Route::get('/users/edit/{id}', [UsersController::class, 'edit']);
@@ -44,4 +48,6 @@ Route::get('/dashboard/trips', [TripsController::class, 'index']);
 Route::get('/perdinku', [TripsController::class, 'perdinku']);
 Route::get('/perdin/add-perdin', [TripsController::class, 'create']);
 Route::post('/perdin/store-perdin', [TripsController::class, 'store']);
+Route::get('/perdin/edit/{id}', [TripsController::class, 'edit']);
+Route::put('/perdin/selection/{id}', [TripsController::class, 'selection']);
 Route::delete('/perdin/delete/{id}', [TripsController::class, 'destroy']);

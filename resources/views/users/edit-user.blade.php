@@ -30,8 +30,14 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
                                     <label for="name">Nama</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Nama Pengguna" value="{{ $user->name }}">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="name" name="name" placeholder="Nama Pengguna"
+                                        value="{{ old('name', $user->name) }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="username">Username</label>
@@ -42,6 +48,11 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password"
                                         placeholder="Password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-12 col-md-12">
                                     <label for="role">Pilih Role</label>

@@ -1694,3 +1694,22 @@ a.ui-button:active,
     overflow: hidden; */
     max-width: 200px;
 }
+.w-500px {
+    width: 500px;
+}
+.bg-primary-50 {
+    --bs-bg-opacity: 1;
+    background-color: #435ebeaf !important;
+}
+
+/* .table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+} */
+/* .table-fit {
+    width: 50% !important;
+} */
+.no-before-icon::before {
+    display: none !important;
+}

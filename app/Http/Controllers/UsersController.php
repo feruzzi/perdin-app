@@ -42,13 +42,16 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         // dd($request->username);
-        User::create([
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'name' => $request->name,
-            'role' => $request->role
+        $validate = $request->validate([
+            'username' => 'required|unique:users|min:5|max:20',
+            'password' => 'required|min:5',
+            'name' => 'required',
+            'role' => 'required'
         ]);
-        return redirect('dashboard/users');
+        $validate['password'] = bcrypt($request->password);
+        User::create($validate);
+        // $request->session()->flash('success', 'Task was successful');
+        return redirect('dashboard/users')->with('success', '"Pengguna ' . $request->name . ' Berhasil Ditambahkan"');
     }
 
     /**
@@ -86,18 +89,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validate = $request->validate([
+            'name' => 'required',
+            'role' => 'required'
+        ]);
         $user = User::find($id);
         if ($request->password) {
-            $password = bcrypt($request->password);
+            $validate = $request->validate([
+                'password' => "required|min:5",
+            ]);
+            $validate['password'] = bcrypt($request->password);
         } else {
-            $password = $user->password;
+            $validate['password'] = $user->password;
         }
-        User::where('id', $id)->update([
-            'password' => $password,
-            'name' => $request->name,
-            'role' => $request->role
-        ]);
-        return redirect('dashboard/users');
+        User::where('id', $id)->update(
+            $validate
+        );
+        return redirect('dashboard/users')->with('success', '"Pengguna ' . $request->name . ' Berhasil Diperbarui"');
     }
 
     /**
@@ -108,7 +116,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::find($id);
         User::destroy($id);
-        return redirect('dashboard/users');
+        return redirect('dashboard/users')->with('success', '"Pengguna ' . $user->name . ' Berhasil Dihapus"');
     }
 }

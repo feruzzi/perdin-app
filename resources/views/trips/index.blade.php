@@ -1,5 +1,5 @@
 @extends('layouts.dashboard.dashboard-admin')
-@push('head')
+{{-- @push('head')
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}">
 @endpush
@@ -7,9 +7,9 @@
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <script>
         let newTrip = $("#tbnewtrip").DataTable();
-        let historyTrip = $("#tbhistorytrip").DataTable();
+        let x = $("#tbhistorytrip").DataTable();
     </script>
-@endpush
+@endpush --}}
 @section('content')
     <div class="page-title">
         <div class="row">

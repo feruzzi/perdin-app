@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('status');
             $table->text('description');
+            $table->string('allowance')->nullable();
             $table->string('process_by')->nullable();
             $table->foreign('username')->references('username')->on('users');
             $table->foreign('origin')->references('id_city')->on('cities');

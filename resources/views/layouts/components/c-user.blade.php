@@ -15,7 +15,7 @@
     </li>
     <hr>
     <li class="sidebar-item">
-        <a href="#" class='sidebar-link text-danger fw-bold'>
+        <a href="{{ url('logout/auth') }}" class='sidebar-link text-danger fw-bold'>
             <i class="icon dripicons dripicons-exit text-danger"></i>
             <span>Logout</span>
         </a>

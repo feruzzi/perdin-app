@@ -1,17 +1,30 @@
+@push('head')
+    <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}">
+@endpush
+@push('footer')
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+    <script>
+        let newTrip = $("#tbnewtrip").DataTable();
+    </script>
+@endpush
 <div class="tab-pane fade show active" id="new-trip" role="tabpanel" aria-labelledby="new-trip-tab">
     <div class="table-responsive mt-3">
         <table class="table" id="tbnewtrip">
             <thead>
-                <th>No</th>
-                <th>Kota</th>
-                <th>Tanggal</th>
-                <th>Keterangan</th>
-                <th>Uang Saku</th>
-                <th>Status</th>
-                <th>Aksi</th>
+                <th class="w-auto">No</th>
+                <th class="w-auto">Kota</th>
+                <th class="w-auto">Tanggal</th>
+                <th class="w-auto">Keterangan</th>
+                <th class="w-auto">Uang Saku</th>
+                <th class="w-auto">Status</th>
+                <th class="w-auto">Aksi</th>
             </thead>
             <tbody>
-                @foreach ($trips as $trip)
+                @foreach ($new_trips as $trip)
+                    @php
+                        $allowance = fCalculateAllowance($trip, fCalculateDistance($trip), fDateDiff($trip->start_date, $trip->end_date));
+                    @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $trip->origin_city->name }} <span
@@ -24,7 +37,8 @@
                             </span>
                         </td>
                         <td class="td-description">{{ fTextTruncate($trip->description, 100) }}</td>
-                        <td>Uang Saku</td>
+                        <td>{{ $allowance['total'] }}</td>
+                        </td>
                         <td>
                             @if ($trip->status == '0')
                                 <span class="badge bg-light-info">Menunggu</span>
@@ -38,14 +52,8 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <form action="{{ url('perdin/delete/' . $trip->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger btn-sm mx-3">
-                                        <span class="icon dripicons dripicons-document-delete"></span>
-                                        Batalkan
-                                    </button>
-                                </form>
+                                <a href="{{ url('perdin/edit/' . $trip->id) }}" class="btn btn-primary btn-sm">
+                                    <span class="icon dripicons dripicons-search me-2"></span>Lihat</a>
                             </div>
                         </td>
                     </tr>

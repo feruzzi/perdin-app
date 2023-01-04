@@ -16,10 +16,12 @@ class TripsController extends Controller
      */
     public function index()
     {
-        $trips = Trip::all();
+        $new_trips = Trip::where('status', "0")->get();
+        $trips_history = Trip::where('status', "!=", "0")->get();
         return view('trips.index', [
             'set_active' => 'trips',
-            'trips' => $trips
+            'new_trips' => $new_trips,
+            'trips_history' => $trips_history
         ]);
     }
 
@@ -77,9 +79,13 @@ class TripsController extends Controller
      * @param  \App\Models\Trip  $trip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trip $trip)
+    public function edit($id)
     {
-        //
+        $trip = Trip::find($id);
+        return view('trips.edit-trip', [
+            'set_active' => 'trips',
+            'trip' => $trip,
+        ]);
     }
 
     /**
@@ -121,5 +127,24 @@ class TripsController extends Controller
             'user' => $user,
             'trips' => $trips,
         ]);
+    }
+    public function selection(Request $request, $id)
+    {
+        $allowance = $request->allowance;
+        $allowance =  substr($allowance, 0, -3);
+        $allowance = (int) filter_var($allowance, FILTER_SANITIZE_NUMBER_INT);
+        if ($request->trip_selection == "approve") {
+            Trip::where('id', $id)->update([
+                'status' => 1,
+                'allowance' => $allowance,
+                'process_by' => auth()->user()->username,
+            ]);
+        } elseif ($request->trip_selection == "reject") {
+            Trip::where('id', $id)->update([
+                'status' => 2,
+                'process_by' => auth()->user()->username,
+            ]);
+        }
+        return redirect('dashboard/trips');
     }
 }

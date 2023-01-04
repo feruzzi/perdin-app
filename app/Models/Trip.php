@@ -17,4 +17,8 @@ class Trip extends Model
     {
         return $this->belongsTo(City::class, 'destination', 'id_city');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'username', 'username');
+    }
 }

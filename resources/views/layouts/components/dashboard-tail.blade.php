@@ -28,7 +28,11 @@
 {{-- <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script> --}}
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/extensions\autonumeric\autoNumeric.js') }}"></script>
+<script src="{{ asset('assets/extensions/autonumeric/autoNumeric.js') }}"></script>
+<script src="{{ asset('assets/js/toast.js') }}"></script>
+<script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+{{-- <script src="{{ asset('assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>> --}}
+{{-- <script src="{{ asset('assets/js/pages/sweetalert2.js') }}"></script>> --}}
 <script>
     $.ajaxSetup({
         headers: {
