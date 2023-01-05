@@ -64,6 +64,8 @@ class CitiesController extends Controller
      */
     public function store(Request $request)
     {
+        $lat = substr($request->lat, 0, 12);
+        $long = substr($request->long, 0, 12);
         $id = substr($request->city_name, 0, 4) . substr($request->lat, 0, 3);
         City::create([
             'id_city' => $id,
@@ -71,10 +73,10 @@ class CitiesController extends Controller
             'province' => strtoupper($request->province),
             'island' => strtoupper($request->island),
             'international' => $request->international,
-            'lat' => $request->lat,
-            'long' => $request->long
+            'lat' => $lat,
+            'long' => $long
         ]);
-        return redirect('dashboard/cities');
+        return redirect('dashboard/cities')->with('success', '"Kota ' . strtoupper($request->city_name) . ' Berhasil Ditambahkan"');
     }
 
     /**
@@ -112,15 +114,17 @@ class CitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $lat = substr($request->lat, 0, 12);
+        $long = substr($request->long, 0, 12);
         $city = City::find($id);
         City::where('id', $id)->update([
             'province' => strtoupper($request->province),
             'island' => strtoupper($request->island),
             'international' => $request->international,
-            'lat' => $request->lat,
-            'long' => $request->long
+            'lat' => $lat,
+            'long' => $long
         ]);
-        return redirect('dashboard/cities');
+        return redirect('dashboard/cities')->with('success', '"Kota ' . strtoupper($request->city_name) . ' Berhasil Diperbarui"');
     }
 
     /**
@@ -131,8 +135,9 @@ class CitiesController extends Controller
      */
     public function destroy($id)
     {
+        $city = City::find($id);
         City::destroy($id);
-        return redirect('dashboard/cities');
+        return redirect('dashboard/cities')->with('success', '"Kota ' . strtoupper($city->name) . ' Berhasil Dihapus"');
     }
     public function find_coor(Request $request)
     {

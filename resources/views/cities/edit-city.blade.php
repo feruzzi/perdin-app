@@ -1,8 +1,8 @@
 @extends('layouts.dashboard.dashboard-admin')
-@push('select2-js')
+@push('head')
     {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> --}}
 @endpush
-@push('ex-select2-js')
+@push('footer')
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $.ajax({
@@ -68,6 +68,41 @@
                 });;
             }
         });
+        $(document).on("click", "#find_coor", function(e) {
+            var city = $('#city_name').val();
+            $('#find_coor').addClass('d-none')
+            $('#spinner').removeClass('d-none')
+            if (!city) {
+                $('#error_message').text("Isi Nama Kota")
+                $('#find_coor').removeClass('d-none')
+                $('#spinner').addClass('d-none')
+            }
+            console.log(city)
+            $.ajax({
+                url: "/cities/find-coor/",
+                type: "GET",
+                data: {
+                    city: city
+                },
+                success: function(response) {
+                    if (response.coor.responseCode == 200) {
+                        console.log(response.coor)
+                        // console.log(response.latitude)
+                        $('#lat').val(response.coor.latitude)
+                        $('#long').val(response.coor.longitude)
+                        $('#find_coor').removeClass('d-none')
+                        $('#spinner').addClass('d-none')
+                        $('#error_message').addClass('d-none')
+                    } else {
+                        $('#find_coor').removeClass('d-none')
+                        $('#spinner').addClass('d-none')
+                        $('#error_message').removeClass('d-none')
+                        $('#error_message').text(response.msg)
+                        console.log(response.msg)
+                    }
+                },
+            })
+        });
     </script>
 @endpush
 @section('content')
@@ -75,12 +110,12 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Kota</h3>
-                <p class="text-subtitle text-muted">Tambah Kota</p>
+                <p class="text-subtitle text-muted">Edit Kota</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('dashboard/users') }}">Kota</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('dashboard/cities') }}">Kota</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Kota</li>
                     </ol>
                 </nav>
@@ -90,7 +125,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Kota</h4>
+                <h4 class="card-title">Edit Kota</h4>
             </div>
             <div class="card-content">
                 <div class="card-body">
@@ -99,30 +134,73 @@
                         @method('put')
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-sm-12 col-md-4">
-                                    <label for="city_name">Nama Kota</label>
-                                    <input type="text" class="form-control" id="city_name" name="city_name"
-                                        placeholder="Nama Pengguna" value="{{ $city->name }}">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="city_name">Nama Kota</label>
+                                        <input type="text" class="form-control @error('city_name') is-invalid @enderror"
+                                            id="city_name" name="city_name" placeholder="Nama Kota"
+                                            value="{{ old('city_name', $city->name) }}">
+                                        @error('city_name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="province">Nama Provinsi</label>
+                                        <input type="text" class="form-control @error('province') is-invalid @enderror"
+                                            id="province" name="province" placeholder="Provinsi"
+                                            value="{{ old('province', $city->province) }}">
+                                        @error('province')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="island">Pulau</label>
+                                        <input type="text" class="form-control @error('island') is-invalid @enderror"
+                                            id="island" name="island" placeholder="Pulau"
+                                            value="{{ old('island', $city->island) }}">
+                                        @error('island')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <label for="province">Nama Provinsi</label>
-                                    <input type="text" class="form-control" id="province" name="province"
-                                        placeholder="Provinsi" value="{{ $city->province }}">
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <label for="island">Pulau</label>
-                                    <input type="text" class="form-control" id="island" name="island"
-                                        placeholder="Pulau" value="{{ $city->island }}">
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="lat">Latitude</label>
-                                    <input type="number" class="form-control" id="lat" name="lat"
-                                        placeholder="Latitude" step="0.000001" value="{{ $city->lat }}">
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="long">Longitude</label>
-                                    <input type="number" class="form-control" id="long" name="long"
-                                        placeholder="Longitude" step="0.000001" value="{{ $city->long }}">
+                                <div class="row mb-3">
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="lat">Latitude</label>
+                                        <input type="number" class="form-control @error('lat') is-invalid @enderror"
+                                            id="lat" name="lat" placeholder="Latitude" step="any"
+                                            value="{{ old('lat', $city->lat) }}">
+                                        @error('lat')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="long">Longitude</label>
+                                        <input type="number" class="form-control @error('long') is-invalid @enderror"
+                                            id="long" name="long" placeholder="Longitude" step="any"
+                                            value="{{ old('long', $city->long) }}">
+                                    </div>
+                                    @error('long')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <div class="col-sm-12 col-md-4 d-flex align-items-end">
+                                        <a id="find_coor" class="btn btn-primary">Cari Koordinat</a>
+                                        <div id="spinner" class="d-none" role="status">
+                                            <img src="{{ asset('assets/images/svg-loaders/puff.svg') }}" class="me-4"
+                                                style="width: 3rem" alt="audio">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <p id="error_message" class="text-danger"></p>
                                 </div>
                                 <div class="col-sm-12 col-md-12">
                                     <label for="international">Pilih Status Kondisi</label>
@@ -131,7 +209,7 @@
                                         <option value="0" {{ $city->international == '0' ? 'selected' : '' }}>Dalam
                                             Negeri
                                         </option>
-                                        <option value="1" {{ $city->international == '0' ? 'selected' : '' }}>Luar
+                                        <option value="1" {{ $city->international == '1' ? 'selected' : '' }}>Luar
                                             Negeri</option>
                                     </select>
                                 </div>

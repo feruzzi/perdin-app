@@ -8,6 +8,16 @@
     <script>
         let city = $("#tbcity").DataTable();
     </script>
+    <script>
+        function confirmation() {
+            return confirm("Yakin Hapus Data ?")
+        }
+    </script>
+    @if (session()->has('success'))
+        <script>
+            toastSuccess({!! session('success') !!})
+        </script>
+    @endif
 @endpush
 @section('content')
     <div class="page-title">
@@ -60,7 +70,7 @@
                                         <form action="{{ url('cities/delete/' . $city->id) }}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-danger btn-sm mx-3">
+                                            <button class="btn btn-danger btn-sm mx-3" onclick="return confirmation()">
                                                 <span class="icon dripicons dripicons-document-delete"></span>
                                             </button>
                                         </form>
