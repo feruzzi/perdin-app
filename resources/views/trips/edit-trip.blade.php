@@ -31,7 +31,7 @@
                                 <div class="col-sm-12 col-md-12 mb-3">
                                     <label for="name">Nama</label>
                                     <input type="text" class="form-control" id="name" name="name" disabled
-                                        value="{{ $trip->user->username }}">
+                                        value="{{ $trip->user->name }}">
                                 </div>
                                 <div class="d-flex mb-3">
                                     <div class="w-500px">

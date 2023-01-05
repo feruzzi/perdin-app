@@ -145,12 +145,14 @@ class TripsController extends Controller
                 'allowance' => $allowance,
                 'process_by' => auth()->user()->username,
             ]);
+            $msg = "Perjalanan Dinas Berhasil Di Setujui";
         } elseif ($request->trip_selection == "reject") {
             Trip::where('id', $id)->update([
                 'status' => 2,
                 'process_by' => auth()->user()->username,
             ]);
+            $msg = "Perjalanan Dinas Berhasil Di Tolak";
         }
-        return redirect('dashboard/trips');
+        return redirect('dashboard/trips')->with('success', $msg);
     }
 }

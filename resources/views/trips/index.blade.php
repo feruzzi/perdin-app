@@ -2,14 +2,20 @@
 {{-- @push('head')
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}">
-@endpush
+@endpush --}}
 @push('footer')
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <script>
         let newTrip = $("#tbnewtrip").DataTable();
         let x = $("#tbhistorytrip").DataTable();
-    </script>
-@endpush --}}
+    </script> --}}
+    @if (session()->has('success'))
+        <script>
+            var msg = `{!! session('success') !!}`
+            toastSuccess(`${msg}`)
+        </script>
+    @endif
+@endpush
 @section('content')
     <div class="page-title">
         <div class="row">
