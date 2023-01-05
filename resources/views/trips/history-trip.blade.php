@@ -18,6 +18,7 @@
                 <th class="w-auto">Tanggal</th>
                 <th class="w-auto">Keterangan</th>
                 <th class="w-auto">Uang Saku</th>
+                <th class="w-auto">Di Proses</th>
                 <th class="w-auto">Status</th>
                 <th class="w-auto">Aksi</th>
             </thead>
@@ -40,6 +41,7 @@
                         <td class="td-description">{{ fTextTruncate($trip->description, 100) }}</td>
                         <td>{{ $allowance['total'] }}</td>
                         </td>
+                        <td>{{ $trip->process_by }}</td>
                         <td>
                             @if ($trip->status == '0')
                                 <span class="badge bg-light-info">Menunggu</span>
