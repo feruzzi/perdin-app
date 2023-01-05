@@ -47,6 +47,7 @@ Route::middleware(['auth', 'isAdmin:0'])->group(function () {
 
     Route::get('/dashboard/trips', [TripsController::class, 'index']);
     Route::put('/perdin/selection/{id}', [TripsController::class, 'selection']);
+    Route::get('/perdin/edit/{id}', [TripsController::class, 'edit']);
     Route::delete('/perdin/delete/{id}', [TripsController::class, 'destroy']);
 });
 
@@ -54,11 +55,11 @@ Route::middleware(['auth', 'isAdmin:1'])->group(function () {
     Route::get('/perdinku', [TripsController::class, 'perdinku']);
     Route::get('/perdin/add-perdin', [TripsController::class, 'create']);
     Route::post('/perdin/store-perdin', [TripsController::class, 'store']);
-    Route::get('/perdin/edit/{id}', [TripsController::class, 'edit']);
+    Route::delete('/perdin/delete/{id}', [TripsController::class, 'destroy']);
 });
-Route::middleware('auth')->group(function () {
-    Route::get('/cities/get-province', [CitiesController::class, 'get_province']);
-    Route::get('/cities/get-island', [CitiesController::class, 'get_island']);
-    Route::get('/cities/get-lat', [CitiesController::class, 'get_lat']);
-    Route::get('/cities/get-long', [CitiesController::class, 'get_long']);
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/cities/get-province', [CitiesController::class, 'get_province']);
+//     Route::get('/cities/get-island', [CitiesController::class, 'get_island']);
+//     Route::get('/cities/get-lat', [CitiesController::class, 'get_lat']);
+//     Route::get('/cities/get-long', [CitiesController::class, 'get_long']);
+// });

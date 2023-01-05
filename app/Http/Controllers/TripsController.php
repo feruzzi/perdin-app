@@ -32,7 +32,7 @@ class TripsController extends Controller
      */
     public function create()
     {
-        $user = 'tes1';
+        $user = auth()->user()->name;
         $cities = City::orderBy('name')->get();
         return view('perdinku.add-perdin', [
             'set_active' => 'perdinku',
@@ -49,9 +49,21 @@ class TripsController extends Controller
      */
     public function store(Request $request)
     {
-        $user = 'tes1';
+        if ($request->start_date > $request->end_date) {
+            $date_diff = -1;
+        } else {
+            $date_diff = 1;
+        }
+        $request['date_diff'] = $date_diff;
+        $validate = $request->validate([
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'description' => 'required',
+            'date_diff' => 'integer|min:0'
+        ]);
+        $username = auth()->user()->username;
         Trip::create([
-            'username' => $user,
+            'username' => $username,
             'origin' => $request->origin,
             'destination' => $request->destination,
             'start_date' => $request->start_date,
@@ -59,7 +71,7 @@ class TripsController extends Controller
             'description' => $request->description,
             'status' => 0,
         ]);
-        return redirect('perdinku');
+        return redirect('perdinku')->with('success', '"Perjalanan Dinas Anda Berhasil Diajukan"');
     }
 
     /**
@@ -109,22 +121,16 @@ class TripsController extends Controller
     public function destroy($id)
     {
         Trip::destroy($id);
-        return redirect('perdinku');
+        return redirect('perdinku')->with('success', '"Perjalanan Dinas Berhasil Dihapus"');
     }
     public function perdinku()
     {
-        // $date = Carbon::parse('2022-12-27');
-        // $now = Carbon::now();
-
-        // $diff = $date->diffInDays($now);
-        // dd($diff);
-        // dd(Carbon::now()->format('d M Y'));
-
-        $user = 'tes1';
-        $trips = Trip::with(['origin_city', 'destination_city'])->where('username', '=', $user)->get();
+        $user = auth()->user()->name;
+        $username = auth()->user()->username;
+        $trips = Trip::with(['origin_city', 'destination_city'])->where('username', '=', $username)->get();
         return view('perdinku.perdinku', [
             'set_active' => 'perdinku',
-            'user' => $user,
+            'user' => $username,
             'trips' => $trips,
         ]);
     }

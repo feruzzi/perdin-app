@@ -61,11 +61,22 @@
                                 </div>
                                 <div class="row mb-3">
                                     <h5>Tanggal</h5>
+                                    @error('date_diff')
+                                        <div class="text-danger">
+                                            Tanggal Mulai Harus Lebih Awal Dari Tanggal Selesai
+                                        </div>
+                                    @enderror
                                     <div class="d-flex">
                                         <div class="w-100">
                                             <label for="start_date">Mulai</label>
-                                            <input type="date" class="form-control date-cursor" id="start_date"
-                                                name="start_date" onfocus="this.showPicker()">
+                                            <input type="date"
+                                                class="form-control date-cursor @error('start_date') is-invalid @enderror"
+                                                id="start_date" name="start_date" onfocus="this.showPicker()">
+                                            @error('start_date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="mx-3">
                                             <label>Hingga</label>
@@ -73,14 +84,25 @@
                                         </div>
                                         <div class="w-100">
                                             <label for="end_date">Selesai</label>
-                                            <input type="date" class="form-control date-cursor" id="end_date"
-                                                name="end_date" onfocus="this.showPicker()">
+                                            <input type="date"
+                                                class="form-control date-cursor @error('end_date') is-invalid @enderror"
+                                                id="end_date" name="end_date" onfocus="this.showPicker()">
+                                            @error('end_date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Keterangan</label>
                                     <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                                    @error('description')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end mt-3">

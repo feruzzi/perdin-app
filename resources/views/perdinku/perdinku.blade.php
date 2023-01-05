@@ -8,6 +8,16 @@
     <script>
         let user = $("#tbuser").DataTable();
     </script>
+    <script>
+        function confirmation() {
+            return confirm("Yakin Batalkan Perjalanan Dinas ?")
+        }
+    </script>
+    @if (session()->has('success'))
+        <script>
+            toastSuccess({!! session('success') !!})
+        </script>
+    @endif
 @endpush
 @section('content')
     <div class="page-title">
@@ -67,16 +77,18 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="d-flex">
-                                        <form action="{{ url('perdin/delete/' . $trip->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger btn-sm mx-3">
-                                                <span class="icon dripicons dripicons-document-delete"></span>
-                                                Batalkan
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @if ($trip->status == '0')
+                                        <div class="d-flex">
+                                            <form action="{{ url('perdin/delete/' . $trip->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger btn-sm mx-3" onclick="return confirmation()">
+                                                    <span class="icon dripicons dripicons-document-delete"></span>
+                                                    Batalkan
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
