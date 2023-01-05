@@ -28,6 +28,8 @@
                         <div class="card-body">
                             <h4 class="card-title">Login Perdin-App</h4>
                             <div class="row">
+                                <div class="alert alert-light-danger color-danger">Username dan Password Tidak
+                                    Ditemukan <i class="bi bi-exclamation-circle"></i></div>
                                 <div class="col-12 mb-3">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" name="username" id="username"

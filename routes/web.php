@@ -56,6 +56,7 @@ Route::middleware(['auth', 'isAdmin:1'])->group(function () {
     Route::get('/perdin/add-perdin', [TripsController::class, 'create']);
     Route::post('/perdin/store-perdin', [TripsController::class, 'store']);
     Route::delete('/perdin/delete/{id}', [TripsController::class, 'destroy']);
+    Route::get('/perdin/detail/{id}', [TripsController::class, 'detail']);
 });
 // Route::middleware('auth')->group(function () {
 //     Route::get('/cities/get-province', [CitiesController::class, 'get_province']);

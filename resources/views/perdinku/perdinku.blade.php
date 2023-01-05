@@ -77,8 +77,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($trip->status == '0')
-                                        <div class="d-flex">
+                                    <div class="d-flex justify-content-center">
+                                        @if ($trip->status == '0')
                                             <form action="{{ url('perdin/delete/' . $trip->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
@@ -87,8 +87,12 @@
                                                     Batalkan
                                                 </button>
                                             </form>
-                                        </div>
-                                    @endif
+                                        @else
+                                            <a href="{{ url('perdin/detail/' . $trip->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                                <span class="icon dripicons dripicons-search me-2"></span>Lihat</a>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

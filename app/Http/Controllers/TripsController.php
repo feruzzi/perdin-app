@@ -155,4 +155,14 @@ class TripsController extends Controller
         }
         return redirect('dashboard/trips')->with('success', $msg);
     }
+    public function detail($id)
+    {
+        $username = auth()->user()->username;
+        $trip = Trip::find($id);
+        return view('perdinku.detail-perdin', [
+            'set_active' => 'perdinku',
+            'user' => $username,
+            'trip' => $trip
+        ]);
+    }
 }
