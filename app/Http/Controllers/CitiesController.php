@@ -64,6 +64,14 @@ class CitiesController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'name' => 'required',
+            'province' => 'required',
+            'island' => 'required',
+            'international' => 'required',
+            'lat' => 'required',
+            'long' => 'required'
+        ]);
         $lat = substr($request->lat, 0, 12);
         $long = substr($request->long, 0, 12);
         $id = substr($request->city_name, 0, 4) . substr($request->lat, 0, 3);
@@ -114,6 +122,14 @@ class CitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validate = $request->validate([
+            'name' => 'required',
+            'province' => 'required',
+            'island' => 'required',
+            'international' => 'required',
+            'lat' => 'required',
+            'long' => 'required'
+        ]);
         $lat = substr($request->lat, 0, 12);
         $long = substr($request->long, 0, 12);
         $city = City::find($id);

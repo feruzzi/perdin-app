@@ -136,10 +136,10 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-4">
                                         <label for="city_name">Nama Kota</label>
-                                        <input type="text" class="form-control @error('city_name') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="city_name" name="city_name" placeholder="Nama Kota"
                                             value="{{ old('city_name') }}">
-                                        @error('city_name')
+                                        @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
