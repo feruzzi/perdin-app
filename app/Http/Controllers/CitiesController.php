@@ -65,7 +65,7 @@ class CitiesController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name' => 'required',
+            'city_name' => 'required',
             'province' => 'required',
             'island' => 'required',
             'international' => 'required',
@@ -123,7 +123,7 @@ class CitiesController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'name' => 'required',
+            'city_name' => 'required',
             'province' => 'required',
             'island' => 'required',
             'international' => 'required',
