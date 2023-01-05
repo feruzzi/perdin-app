@@ -31,12 +31,19 @@ class PagesController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->only('username', 'password'))) {
             $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+            if (auth()->user()->role == "0") {
+                return redirect()->intended('dashboard');
+            } else {
+                return redirect()->intended('perdinku');
+            }
         }
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+
+        //     return redirect()->intended('dashboard');
+        // }
         return back()->withErrors([
             'username' => 'Username dan Password Tidak Valid',
         ]);
