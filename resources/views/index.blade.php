@@ -28,17 +28,29 @@
                         <div class="card-body">
                             <h4 class="card-title">Login Perdin-App</h4>
                             <div class="row">
-                                <div class="alert alert-light-danger color-danger">Username dan Password Tidak
-                                    Ditemukan <i class="bi bi-exclamation-circle"></i></div>
+                                @error('error')
+                                    <div class="alert alert-light-danger color-danger">Username dan Password Tidak
+                                        Ditemukan <i class="bi bi-exclamation-circle"></i></div>
+                                @enderror
                                 <div class="col-12 mb-3">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        name="username" id="username" placeholder="Username">
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="Password">Password</label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        name="password" id="password" placeholder="Password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

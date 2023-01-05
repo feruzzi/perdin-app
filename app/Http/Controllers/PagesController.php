@@ -45,7 +45,7 @@ class PagesController extends Controller
         //     return redirect()->intended('dashboard');
         // }
         return back()->withErrors([
-            'username' => 'Username dan Password Tidak Valid',
+            'error' => 'Username dan Password Tidak Valid',
         ]);
     }
     public function logout(Request $request)
