@@ -39,11 +39,6 @@ class PagesController extends Controller
                 return redirect()->intended('perdinku');
             }
         }
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('dashboard');
-        // }
         return back()->withErrors([
             'error' => 'Username dan Password Tidak Valid',
         ]);

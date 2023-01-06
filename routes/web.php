@@ -35,10 +35,10 @@ Route::middleware(['auth', 'isAdmin:0'])->group(function () {
 
     Route::get('/dashboard/cities', [CitiesController::class, 'index']);
     Route::get('/cities/add-city', [CitiesController::class, 'create']);
-    // Route::get('/cities/get-province', [CitiesController::class, 'get_province']);
-    // Route::get('/cities/get-island', [CitiesController::class, 'get_island']);
-    // Route::get('/cities/get-lat', [CitiesController::class, 'get_lat']);
-    // Route::get('/cities/get-long', [CitiesController::class, 'get_long']);
+    Route::get('/cities/get-province', [CitiesController::class, 'get_province']);
+    Route::get('/cities/get-island', [CitiesController::class, 'get_island']);
+    Route::get('/cities/get-lat', [CitiesController::class, 'get_lat']);
+    Route::get('/cities/get-long', [CitiesController::class, 'get_long']);
     Route::post('/cities/store-city', [CitiesController::class, 'store']);
     Route::get('/cities/edit/{id}', [CitiesController::class, 'edit']);
     Route::put('/cities/update/{id}', [CitiesController::class, 'update']);

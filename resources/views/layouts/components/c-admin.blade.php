@@ -9,19 +9,19 @@
     </li>
     <li class="sidebar-item  {{ $set_active == 'users' ? 'active' : '' }}">
         <a href="{{ url('dashboard/users') }}" class='sidebar-link'>
-            <i class="icon dripicons dripicons-stack"></i>
+            <i class="icon dripicons dripicons-user-group"></i>
             <span>Pengguna</span>
         </a>
     </li>
     <li class="sidebar-item {{ $set_active == 'cities' ? 'active' : '' }}">
         <a href="{{ url('dashboard/cities') }}" class='sidebar-link'>
-            <i class="icon dripicons dripicons-article"></i>
+            <i class="icon dripicons dripicons-store"></i>
             <span>Master Kota</span>
         </a>
     </li>
     <li class="sidebar-item {{ $set_active == 'trips' ? 'active' : '' }}">
         <a href="{{ url('dashboard/trips') }}" class='sidebar-link'>
-            <i class="icon dripicons dripicons-article"></i>
+            <i class="icon dripicons dripicons-archive"></i>
             <span>Perjalanan Dinas</span>
         </a>
     </li>
