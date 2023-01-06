@@ -34,9 +34,9 @@ class PagesController extends Controller
         if (Auth::attempt($request->only('username', 'password'))) {
             $request->session()->regenerate();
             if (auth()->user()->role == "0") {
-                return redirect()->intended('dashboard');
+                return redirect('dashboard');
             } else {
-                return redirect()->intended('perdinku');
+                return redirect('perdinku');
             }
         }
         return back()->withErrors([
