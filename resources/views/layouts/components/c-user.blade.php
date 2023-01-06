@@ -14,6 +14,5 @@
             <i class="icon dripicons dripicons-exit text-danger"></i>
             <span>Logout</span>
         </a>
-        <h5>Hello , {{ $user }}</h5>
     </li>
 </ul>

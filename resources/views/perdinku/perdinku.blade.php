@@ -6,7 +6,7 @@
 @push('footer')
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <script>
-        let user = $("#tbuser").DataTable();
+        let perdin = $("#tbperdin").DataTable();
     </script>
     <script>
         function confirmation() {
@@ -23,6 +23,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
+                <h5>Hello , {{ $user }}</h5>
                 <h3>Perjalanan Dinas</h3>
                 <p class="text-subtitle text-muted">Daftar Perjalanan Dinas</p>
             </div>
@@ -42,7 +43,7 @@
         </div>
         <div class="card my-3 p-3">
             <div class="table-responsive mt-3">
-                <table class="table" id="tbuser">
+                <table class="table" id="tbperdin">
                     <thead>
                         <th>No</th>
                         <th>Kota</th>

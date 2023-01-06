@@ -6,7 +6,7 @@
     <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <script>
         // let newTrip = $("#tbnewtrip").DataTable();
-        let x = $("#tbhistorytrip").DataTable();
+        let history = $("#tbhistorytrip").DataTable();
     </script>
 @endpush
 <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
