@@ -1713,3 +1713,7 @@ a.ui-button:active,
 .no-before-icon::before {
     display: none !important;
 }
+.choices__list,
+.choices__list--dropdown .choices__item--selectable.is-highlighte {
+    background-color: #ffffff11;
+}
